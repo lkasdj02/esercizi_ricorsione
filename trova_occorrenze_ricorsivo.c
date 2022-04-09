@@ -37,10 +37,17 @@ int trova_occorrenze(int *X, int dim, int x, int n) {
 
 int trova_occorrenze_2(int X[], int dim, int x) {
     /* PRE: X è un array conenente dim elementi
-     * POST: il numero n contiene il numero di occorenze di x i 
+     * POST: ritorna il numero di occorrenze di x 
      */
-    if (dim == 0) // CASO BASE: 
+    if (dim == 0) // CASO BASE: ritorno 0; se l'array è vuoto, non ci sono elementi x al suo interno.
        return 0;
+    /* CASO RICORSIVO
+     * ipotesi induttiva: supponendo vera la POST per un generico elemento dell'array.
+     * al passo n, questa funzione ritorna il numero di occorenze di x
+     * al passo n + 1, per l'ipotesi induttiva abbiamo che restituisce il numero di occerenze di x
+     * + 1 nel caso in cui al passo n + 1 ne abbia trovata un'altra
+     * + 0 nel caso contrario.
+     */
     if (X[0] == x)
        return 1 + trova_occorrenze_2(X + 1, dim - 1, x);
     else
