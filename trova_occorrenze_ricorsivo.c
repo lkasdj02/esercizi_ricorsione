@@ -2,16 +2,20 @@
 
 int trova_occorrenze(int *X, int dim, int x, int n); 
 int trova_occorrenze_2(int *X, int dim, int x);
+int trova_occorrenze_3(int *X, int dim, int x);
 
 int main() {
    int numeri[8]; 
    int n;
+   printf("inserisci il numero da trovare: ");
    scanf("%d", &n);
+   printf("inserisci l'insieme di numeri di riferimento: ");
+
    for (int i = 0; i < 8; i++) {
        scanf("%d", &numeri[i]);
    }
-   int n_occorrenze = trova_occorrenze_2(numeri, 8, n);
-   printf("il numero di occorrenze di 2: %d", n_occorrenze);
+   int n_occorrenze = trova_occorrenze_3(numeri, 8, n);
+   printf("il numero di occorrenze di %d: %d", n, n_occorrenze);
 }
 
 int trova_occorrenze(int *X, int dim, int x, int n) {
@@ -52,5 +56,23 @@ int trova_occorrenze_2(int X[], int dim, int x) {
        return 1 + trova_occorrenze_2(X + 1, dim - 1, x);
     else
        return trova_occorrenze_2(X + 1, dim - 1, x);
+    
+}
+
+int trova_occorrenze_3(int X[], int dim, int x) {
+
+    /* PRE: X è un array conenente dim elementi
+     * POST: ritorna il numero di occorrenze di x 
+     */
+    if (dim == 0) // CASO BASE: ritorno 0; se l'array è vuoto, non ci sono elementi x al suo interno.
+       return 0;
+    /* CASO RICORSIVO
+     * ipotesi induttiva: supponendo vera la POST per un generico elemento dell'array.
+     * al passo n, questa funzione ritorna il numero di occorenze di x
+     * al passo n + 1, per l'ipotesi induttiva abbiamo che restituisce il numero di occerenze di x
+     * + 1 nel caso in cui al passo n + 1 ne abbia trovata un'altra
+     * + 0 nel caso contrario.
+     */
+    return (X[0] == x) ?  1 + trova_occorrenze_2(X + 1, dim - 1, x) : trova_occorrenze_2(X + 1, dim - 1, x);
     
 }
