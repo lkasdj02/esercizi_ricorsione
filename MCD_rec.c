@@ -19,6 +19,9 @@ int main() {
     printf("\n"); 
     
     int MCD = mcd(n1, n2, minore);
+    if (MCD == 1) {
+        printf("%d e %d sono coprimi tra loro.\n", n1, n2); 
+    }
     printf("il massimo comune divisore tra n1 ed n2 è: %d\n", MCD); 
 }
 

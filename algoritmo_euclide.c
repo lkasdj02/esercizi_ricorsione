@@ -15,7 +15,11 @@ int main() {
     scanf("%d", &n2);   
    
     int MCD = euclide_rec(n1, n2); 
+
+    if (MCD == 1)
+        printf("%d e %d sono coprimi tra loro.\n", n1, n2);
     printf("massimo comune divisore tra %d | %d è: %d.\n", n1, n2, MCD);
+
 }
 
 int euclide(int a, int b) {
