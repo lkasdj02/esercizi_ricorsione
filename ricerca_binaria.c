@@ -2,14 +2,20 @@
 
 int search(int *X, int dim, int elem);
 
+
 int main() {
 
     // porca di quella puttana è arrivato il momento.
     // ipotesi fondamentale affinchè questo algoritmo funzioni.
     // l'array deve essere ordinato (in modo crescente preferibilmente).
-    int a[10] = { 2, 4, 5, 6, 7, 9, 10, 12, 13 };
-
-    
+    int a[8] = { 1, 2, 4, 5, 6, 7, 8, 10};
+    printf("vettore:\n");
+    for (int i = 0; i < sizeof(a) / sizeof(int); i += 1)
+        if (i == (sizeof(a) / sizeof(int)) - 1) 
+            printf("%d. \n", a[i]);
+        else
+            printf("%d, ", a[i]);
+                
     // ricerca di un elemento all'intero dell'array
     
     int search_for;
@@ -30,16 +36,17 @@ int search(int *X, int dim, int elem) {
     // POST: la funzione ritorna 1 se l'elemento si trova all'interno di X 0, altrimenti.
     
     int pos = dim/2;    
+    printf("pos: %d \t x[pos]: %d \t dim: %d\n", pos, X[pos], dim); // DEBUG
 
     // CASI BASE
-    if (dim < 1) // nel caso in cui elem non sia nel vettore.
+    if (dim <= 0) // nel caso in cui elem non sia nel vettore.
         return 0;
-    if (X[pos] == elem && dim == 1) // CASI BASE.
+    if (X[pos] == elem) // CASI BASE.
         return 1;
     
     // casi ricorsivi    
     if (elem < X[pos])
-        return search(X, dim/2, elem);
+        return search(X, pos, elem);
     else
-        return search(X + pos, dim/2, elem);
+        return search(X + pos, dim - pos - 1, elem);
 }
