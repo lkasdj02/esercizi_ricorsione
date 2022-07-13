@@ -17,9 +17,9 @@ int main() {
     scanf("%d", &search_for);
     int el = search(a, sizeof(a) / sizeof(int), search_for);
 
-    (el == -1) ? 
-        printf("elemento non trovato.\n") :
-        printf("elemento %d trovato\n", el);
+    (el) ? 
+        printf("elemento trovato\n") :
+        printf("elemento non trovato.\n");
 }
 
 int search(int *X, int dim, int elem) {
@@ -27,15 +27,15 @@ int search(int *X, int dim, int elem) {
     // PRE: X è un puntatore ad un vettore di interi. elem è l'elemento che si vuole cercare all'interno di esso.
     // e dim è la dimensione del vettore X.
     
-    // POST: la funzione ritorna elem  se l'elemento si trova all'interno del sottoinsieme di dimensione X / 2.
+    // POST: la funzione ritorna 1 se l'elemento si trova all'interno di X 0, altrimenti.
     
     int pos = dim/2;    
 
     // CASI BASE
     if (dim < 1) // nel caso in cui elem non sia nel vettore.
-        return -1;
+        return 0;
     if (X[pos] == elem && dim == 1) // CASI BASE.
-        return X[pos];
+        return 1;
     
     // casi ricorsivi    
     if (elem < X[pos])
