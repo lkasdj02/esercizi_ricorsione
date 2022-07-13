@@ -8,6 +8,7 @@ int trova_elemento(int *X, int dim, int elem) {
     else
         return trova_elemento(X + 1, dim - 1, elem);
 } 
+
 int main() {
     int numeri[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     int dimensione = sizeof(numeri) / sizeof(int);
